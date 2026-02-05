@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Blog</title>
+    <th:block th:insert="layout/layout :: library"/>
 </head>
 <body>
-
+<div class="container mt-4">
+    <h2>Add New Blog</h2>
+    <form th:action="@{/blogs/save}" method="post" th:object="${blog}">
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select class="form-select" th:field="*{category}">
+                <option value="">--Chose Category--</option>
+                <option th:each="c : ${categoryList}"
+                        th:value="${c.id}"
+                        th:text="${c.name}">
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" th:field="*{title}" placeholder="Title" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Content</label>
+            <textarea type="text" th:field="*{content}" placeholder="Content" required></textarea>
+        </div>
+        <div class="text-end">
+            <button type="submit" class="btn btn-success">Add</button>
+            <a href="/blogs" class="btn btn-secondary">Back</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

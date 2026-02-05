@@ -10,12 +10,13 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "blogs")
+@Table(name = "blog")
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +25,13 @@ public class Blog {
 
     @Column(columnDefinition = "TEXT")
     private String content;
+    private LocalDateTime createAt;
+    @PrePersist
+    public void prePersist() {
+        this.createAt = LocalDateTime.now();
+    }
 
-    private LocalDateTime createBlog;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }

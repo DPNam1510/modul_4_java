@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Detail</title>
 </head>
 <body>
+<th:block th:insert="layout/layout :: library"/>
 
+<div class="card shadow col-md-8 mx-auto">
+    <div class="card-header">
+        <h4 th:text="${blog.title}"></h4>
+    </div>
+    <div class="card-body">
+        <p>
+            Category:
+            <b th:text="${blog.category.name}"></b>
+        </p>
+    </div>
+    <div class="card-body">
+        <p th:text="${blog.content}" style="white-space: pre-line"></p>
+    </div>
+
+    <div class="card-footer text-end">
+        <a href="/blogs" class="btn btn-secondary">Back</a>
+    </div>
+</div>
 </body>
 </html>
