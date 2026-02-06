@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+    <th:block th:insert="layout/layout :: library"/>
+</head>
+<body>
+<h2>ADD USER</h2>
+
+<form th:action="@{/users/save}" th:object="${user}" method="post">
+
+    <div class="form-group">
+        <label>First Name:</label>
+        <input type="text" th:field="*{firstName}">
+        <span class="error" th:errors="*{firstName}"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Last Name:</label>
+        <input type="text" th:field="*{lastName}">
+        <span class="error" th:errors="*{lastName}"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Gender:</label>
+        <input type="radio" th:field="*{gender}" value="true"> Male
+        <input type="radio" th:field="*{gender}" value="false"> Female
+    </div>
+
+    <div class="form-group">
+        <label>Age:</label>
+        <input type="number" th:field="*{age}">
+        <span class="error" th:errors="*{age}"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Email:</label>
+        <input type="text" th:field="*{email}">
+        <span class="error" th:errors="*{email}"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Phone:</label>
+        <input type="text" th:field="*{phone}">
+        <span class="error" th:errors="*{phone}"></span>
+    </div>
+
+    <div class="text-end">
+        <button type="submit" class="btn btn-success">Add</button>
+        <a href="/users" class="btn btn-secondary">Back</a>
+    </div>
+</form>
+</body>
+</html>
